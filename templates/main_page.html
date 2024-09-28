@@ -1,13 +1,22 @@
 <html>
   <body>
     <table border="1">
-      {% for row in data %}
-      <tr>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
+      <thead>
+        <tr>
+          {% for col_name in columns %}
+          <th>{{ col_name }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+        <tr>
+          {% for cell in row %}
+          <td>{{ cell }}</td>
+          {% endfor %}
+        </tr>
         {% endfor %}
-      </tr>
-      {% endfor %}
+      </tbody>
     </table>
   </body>
 </html>

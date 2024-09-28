@@ -12,7 +12,10 @@ def main_page():
   with sqlite3.connect(DB_PATH) as conn:
     cur = conn.cursor()
     cur.execute('Select * FROM t1')
-  return  render_template('main_page.html', data=cur.fetchall())
+  return  render_template(
+    'main_page.html', 
+    columns=[x[0] for x in cur.description],
+    data=cur.fetchall())
 
 if __name__ == '__main__':
   app.run(port=5010, debug=True) # Запускаем на нужном порте с отладочной инфой
