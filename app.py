@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sqlite3
 
-from flask import Flask
+from flask import Flask, render_template
 
 DB_PATH = '/home/ent1r/study/bd/DB/test.s3db'
 
@@ -12,7 +12,7 @@ def main_page():
   with sqlite3.connect(DB_PATH) as conn:
     cur = conn.cursor()
     cur.execute('Select * FROM t1')
-  return  str(cur.fetchall())
+  return  render_template('main_page.html', data=cur.fetchall())
 
 if __name__ == '__main__':
   app.run(port=5010, debug=True) # Запускаем на нужном порте с отладочной инфой
